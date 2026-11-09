@@ -1,0 +1,240 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   Int           @id @default(autoincrement())
+  nama                 String
+  email_kampus         String        @unique
+  nim_nip              String        @unique
+  no_hp                String?
+  password_hash        String
+  role                 String        @default("civitas") // "civitas", "resepsionis", "superadmin"
+  prodi_unit           String?
+  status_aktif         Boolean       @default(true)
+  email_verified_at    DateTime?
+  failed_login_attempts Int          @default(0)
+  locked_until         DateTime?
+  reset_token          String?
+  reset_token_expires  DateTime?
+  created_at           DateTime      @default(now())
+
+  lost_reports         LostReport[]
+  found_items          FoundItem[]   @relation("RecordedBy")
+  claims               Claim[]
+  notifications        Notification[]
+  audit_logs           AuditLog[]
+  content_reports      ContentReport[]
+  handovers_given      Handover[]    @relation("HandoverOfficer")
+  handovers_received   Handover[]    @relation("HandoverRecipient")
+}
+
+model Category {
+  id           Int           @id @default(autoincrement())
+  nama         String        @unique
+  aktif        Boolean       @default(true)
+  created_at   DateTime      @default(now())
+
+  lost_reports LostReport[]
+  found_items  FoundItem[]
+}
+
+model Location {
+  id           Int           @id @default(autoincrement())
+  nama_gedung  String
+  zona_area    String?
+  nama_ruang   String
+  aktif        Boolean       @default(true)
+  created_at   DateTime      @default(now())
+
+  lost_reports LostReport[]
+  found_items  FoundItem[]
+}
+
+model LostReport {
+  id                  Int             @id @default(autoincrement())
+  user_id             Int
+  category_id         Int
+  location_id         Int
+  judul               String
+  deskripsi           String
+  ciri_rahasia        String
+  tanggal_hilang      DateTime
+  status              String          @default("MenungguVerifikasi") // MenungguVerifikasi, PerluRevisi, Tayang, AdaKandidat, Selesai, Kedaluwarsa, Ditolak
+  alasan_penolakan    String?
+  catatan_revisi      String?
+  alasan_penutupan    String?
+  expired_at          DateTime
+  jumlah_perpanjangan Int             @default(0)
+  is_hidden           Boolean         @default(false)
+  deleted_at          DateTime?
+  created_at          DateTime        @default(now())
+  updated_at          DateTime        @updatedAt
+
+  user                User            @relation(fields: [user_id], references: [id])
+  category            Category        @relation(fields: [category_id], references: [id])
+  location            Location        @relation(fields: [location_id], references: [id])
+  images              ItemImage[]     @relation("LostImages")
+  matches             Match[]
+  claims              Claim[]
+  content_reports     ContentReport[]
+}
+
+model FoundItem {
+  id                   Int          @id @default(autoincrement())
+  kode_barang          String       @unique // Format: TMN-YYYY-NNNN
+  category_id          Int
+  location_id          Int
+  judul_publik         String
+  deskripsi            String
+  ciri_rahasia         String?
+  tanggal_temuan       DateTime
+  nama_penemu          String?
+  lokasi_simpan        String       @default("Meja Resepsionis")
+  bernilai_tinggi      Boolean      @default(false)
+  is_dokumen_identitas Boolean      @default(false)
+  pemilik_dihubungi    Boolean      @default(false)
+  dicatat_oleh         Int
+  batas_simpan         DateTime
+  status               String       @default("Disimpan") // Disimpan, Diklaim, Diserahkan, TidakDiklaim, Dialihkan
+  tindak_lanjut        String?      // DiserahkanBagianUmum, Dihibahkan, Dimusnahkan
+  catatan_tindak_lanjut String?
+  created_at           DateTime     @default(now())
+  updated_at           DateTime     @updatedAt
+
+  category             Category     @relation(fields: [category_id], references: [id])
+  location             Location     @relation(fields: [location_id], references: [id])
+  officer              User         @relation("RecordedBy", fields: [dicatat_oleh], references: [id])
+  images               ItemImage[]  @relation("FoundImages")
+  matches              Match[]
+  claims               Claim[]
+  handover             Handover?
+}
+
+model ItemImage {
+  id              Int         @id @default(autoincrement())
+  ref_id          Int
+  ref_type        String      // "lost", "found", "handover"
+  path            String      // Base64 data URI or public path
+  thumbnail_path  String?
+  is_blurred      Boolean     @default(false)
+  created_at      DateTime    @default(now())
+
+  lost_report_id  Int?
+  lost_report     LostReport? @relation("LostImages", fields: [lost_report_id], references: [id], onDelete: Cascade)
+
+  found_item_id   Int?
+  found_item      FoundItem?  @relation("FoundImages", fields: [found_item_id], references: [id], onDelete: Cascade)
+
+  handover_id     Int?
+  handover        Handover?   @relation("HandoverImages", fields: [handover_id], references: [id], onDelete: Cascade)
+}
+
+model Match {
+  id              Int         @id @default(autoincrement())
+  lost_id         Int
+  found_id        Int
+  skor            Float
+  rincian_skor    String?     // JSON string breakdown
+  status          String      @default("kandidat") // kandidat, diterima, ditolak
+  diputuskan_oleh Int?
+  created_at      DateTime    @default(now())
+  updated_at      DateTime    @updatedAt
+
+  lost_report     LostReport  @relation(fields: [lost_id], references: [id], onDelete: Cascade)
+  found_item      FoundItem   @relation(fields: [found_id], references: [id], onDelete: Cascade)
+
+  @@unique([lost_id, found_id])
+}
+
+model Claim {
+  id               Int         @id @default(autoincrement())
+  found_id         Int
+  lost_id          Int?
+  claimant_id      Int
+  keterangan       String
+  identitas_dicek  Boolean     @default(false)
+  jenis_identitas  String?     // KTM, KTP, SIM
+  ciri_cocok       Boolean     @default(false)
+  catatan          String?
+  diverifikasi_oleh Int?
+  status           String      @default("Menunggu") // Menunggu, Disetujui, Ditolak
+  created_at       DateTime    @default(now())
+  updated_at       DateTime    @updatedAt
+
+  found_item       FoundItem   @relation(fields: [found_id], references: [id])
+  lost_report      LostReport? @relation(fields: [lost_id], references: [id])
+  claimant         User        @relation(fields: [claimant_id], references: [id])
+  handover         Handover?
+}
+
+model Handover {
+  id               Int         @id @default(autoincrement())
+  found_id         Int         @unique // Exactly one handover per found item (FR-CLAIM-05)
+  claim_id         Int?        @unique
+  penerima_id      Int?
+  nama_penerima    String
+  diwakilkan       Boolean     @default(false)
+  nama_perwakilan  String?
+  alasan_perwakilan String?
+  diserahkan_oleh  Int
+  waktu            DateTime    @default(now())
+  bukti_path       String?     // Photo proof
+  ttd_digital      String?     // Base64 Signature Data
+
+  found_item       FoundItem   @relation(fields: [found_id], references: [id])
+  claim            Claim?      @relation(fields: [claim_id], references: [id])
+  penerima         User?       @relation("HandoverRecipient", fields: [penerima_id], references: [id])
+  petugas          User        @relation("HandoverOfficer", fields: [diserahkan_oleh], references: [id])
+  images           ItemImage[] @relation("HandoverImages")
+}
+
+model ContentReport {
+  id          Int        @id @default(autoincrement())
+  lost_id     Int
+  pelapor_id  Int
+  alasan      String
+  status      String     @default("Menunggu") // Menunggu, Ditinjau, Selesai
+  created_at  DateTime   @default(now())
+
+  lost_report LostReport @relation(fields: [lost_id], references: [id])
+  pelapor     User       @relation(fields: [pelapor_id], references: [id])
+}
+
+model Notification {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  tipe       String   // info, success, warning, match
+  judul      String
+  isi        String
+  tautan     String?
+  dibaca     Boolean  @default(false)
+  created_at DateTime @default(now())
+
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Setting {
+  key        String   @id
+  value      String
+  deskripsi  String?
+  updated_at DateTime @updatedAt
+}
+
+model AuditLog {
+  id         Int      @id @default(autoincrement())
+  user_id    Int?
+  aksi       String
+  entitas    String
+  entitas_id Int?
+  detail     String?
+  ip         String?
+  created_at DateTime @default(now())
+
+  user       User?    @relation(fields: [user_id], references: [id])
+}
