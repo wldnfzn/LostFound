@@ -77,7 +77,7 @@ export default function RegisterPage() {
                 placeholder="Contoh: Rian Pratama"
                 value={formData.nama}
                 onChange={(e) => setFormData({ ...formData, nama: e.target.value })}
-                className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none placeholder:text-slate-400"
               />
             </div>
 
@@ -90,7 +90,7 @@ export default function RegisterPage() {
                   placeholder="user@kampus.ac.id"
                   value={formData.email_kampus}
                   onChange={(e) => setFormData({ ...formData, email_kampus: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none placeholder:text-slate-400"
                 />
               </div>
 
@@ -102,7 +102,7 @@ export default function RegisterPage() {
                   placeholder="220101099"
                   value={formData.nim_nip}
                   onChange={(e) => setFormData({ ...formData, nim_nip: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none placeholder:text-slate-400"
                 />
               </div>
             </div>
@@ -115,7 +115,7 @@ export default function RegisterPage() {
                   placeholder="08123456789"
                   value={formData.no_hp}
                   onChange={(e) => setFormData({ ...formData, no_hp: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none placeholder:text-slate-400"
                 />
               </div>
 
@@ -126,7 +126,7 @@ export default function RegisterPage() {
                   placeholder="Teknik Informatika"
                   value={formData.prodi_unit}
                   onChange={(e) => setFormData({ ...formData, prodi_unit: e.target.value })}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none placeholder:text-slate-400"
                 />
               </div>
             </div>
@@ -139,7 +139,7 @@ export default function RegisterPage() {
                 placeholder="Minimal 6 karakter"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none placeholder:text-slate-400"
               />
             </div>
 

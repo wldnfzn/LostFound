@@ -147,7 +147,7 @@ export default function CatatBarangTemuanPage() {
               placeholder="Contoh: Dompet Hitam Braun Buffel, Kunci Honda Vario..."
               value={formData.judul_publik}
               onChange={(e) => setFormData({ ...formData, judul_publik: e.target.value })}
-              className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none placeholder:text-slate-400"
             />
           </div>
 
@@ -159,7 +159,7 @@ export default function CatatBarangTemuanPage() {
               required
               value={formData.category_id}
               onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
-              className="w-full p-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             >
               <option value="">-- Pilih --</option>
               {categories.map((c) => (
@@ -181,7 +181,7 @@ export default function CatatBarangTemuanPage() {
               required
               value={selectedGedung}
               onChange={(e) => setSelectedGedung(e.target.value)}
-              className="w-full p-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50"
+              className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             >
               <option value="">-- Pilih Gedung --</option>
               {uniqueGedung.map((g) => (
@@ -201,7 +201,7 @@ export default function CatatBarangTemuanPage() {
               disabled={!selectedGedung}
               value={formData.location_id}
               onChange={(e) => setFormData({ ...formData, location_id: e.target.value })}
-              className="w-full p-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50 disabled:opacity-50"
+              className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 disabled:opacity-50"
             >
               <option value="">-- Pilih Ruangan --</option>
               {filteredRooms.map((r) => (
@@ -221,7 +221,7 @@ export default function CatatBarangTemuanPage() {
               required
               value={formData.tanggal_temuan}
               onChange={(e) => setFormData({ ...formData, tanggal_temuan: e.target.value })}
-              className="w-full p-2.5 rounded-xl border border-slate-200 text-xs"
+              className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             />
           </div>
         </div>
@@ -237,7 +237,7 @@ export default function CatatBarangTemuanPage() {
               placeholder="Contoh: Pak Joko (Satpam Gedung A), Mahasiswa Anonim..."
               value={formData.nama_penemu}
               onChange={(e) => setFormData({ ...formData, nama_penemu: e.target.value })}
-              className="w-full p-2.5 rounded-xl border border-slate-200 text-xs"
+              className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 placeholder:text-slate-400"
             />
           </div>
 
@@ -251,7 +251,7 @@ export default function CatatBarangTemuanPage() {
               placeholder="Contoh: Loker A-1, Brankas Terkunci B-2, Laci Dokumen..."
               value={formData.lokasi_simpan}
               onChange={(e) => setFormData({ ...formData, lokasi_simpan: e.target.value })}
-              className="w-full p-2.5 rounded-xl border border-slate-200 text-xs"
+              className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 placeholder:text-slate-400"
             />
           </div>
         </div>
@@ -268,7 +268,7 @@ export default function CatatBarangTemuanPage() {
               placeholder="Deskripsi tanpa menyebutkan kode rahasia atau isi dompet secara mendalam..."
               value={formData.deskripsi}
               onChange={(e) => setFormData({ ...formData, deskripsi: e.target.value })}
-              className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500"
+              className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 placeholder:text-slate-400"
             />
           </div>
 

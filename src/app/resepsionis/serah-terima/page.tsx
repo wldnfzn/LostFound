@@ -243,7 +243,7 @@ function SerahTerimaContent() {
                   placeholder="Nama lengkap sesuai kartu identitas"
                   value={namaPenerima}
                   onChange={(e) => setNamaPenerima(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none placeholder:text-slate-400"
                 />
               </div>
 
@@ -254,7 +254,7 @@ function SerahTerimaContent() {
                 <select
                   value={jenisIdentitas}
                   onChange={(e) => setJenisIdentitas(e.target.value)}
-                  className="w-full p-2.5 rounded-xl border border-slate-200 text-xs bg-slate-50"
+                  className="w-full p-2.5 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
                 >
                   <option value="KTM">KTM (Kartu Tanda Mahasiswa)</option>
                   <option value="KTP">KTP (Kartu Tanda Penduduk)</option>

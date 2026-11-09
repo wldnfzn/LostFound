@@ -117,55 +117,55 @@ export default function LaporanSayaPage() {
     switch (status) {
       case "MenungguVerifikasi":
         return (
-          <span className="flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">
+          <span className="flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-200">
             <Clock className="w-3.5 h-3.5 text-amber-600" />
             <span>Menunggu Verifikasi Resepsionis</span>
           </span>
         );
       case "PerluRevisi":
         return (
-          <span className="flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-orange-100 text-orange-800">
+          <span className="flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-orange-50 text-orange-950 border border-orange-300">
             <AlertTriangle className="w-3.5 h-3.5 text-orange-600" />
             <span>Perlu Revisi</span>
           </span>
         );
       case "Tayang":
         return (
-          <span className="flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800">
+          <span className="flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-900 border border-blue-200">
             <CheckCircle2 className="w-3.5 h-3.5 text-blue-600" />
             <span>Tayang di Papan Pengumuman</span>
           </span>
         );
       case "AdaKandidat":
         return (
-          <span className="flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-800 animate-pulse">
+          <span className="flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-purple-50 text-purple-950 border border-purple-300 animate-pulse">
             <Sparkles className="w-3.5 h-3.5 text-purple-600" />
             <span>Ada Kandidat Ditemukan!</span>
           </span>
         );
       case "Selesai":
         return (
-          <span className="flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+          <span className="flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-950 border border-emerald-200">
             <Check className="w-3.5 h-3.5 text-emerald-600" />
             <span>Selesai (Sudah Ditemukan)</span>
           </span>
         );
       case "Kedaluwarsa":
         return (
-          <span className="flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-200 text-slate-700">
+          <span className="flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-800 border border-slate-200">
             <Archive className="w-3.5 h-3.5 text-slate-500" />
             <span>Masa Tayang Habis</span>
           </span>
         );
       case "Ditolak":
         return (
-          <span className="flex items-center space-x-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">
+          <span className="flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-red-50 text-red-950 border border-red-200">
             <XCircle className="w-3.5 h-3.5 text-red-600" />
             <span>Ditolak</span>
           </span>
         );
       default:
-        return <span>{status}</span>;
+        return <span className="font-bold">{status}</span>;
     }
   };
 
@@ -332,9 +332,9 @@ export default function LaporanSayaPage() {
                   </div>
 
                   {/* Secret Feature Notice (Owner view) */}
-                  <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700">
-                    <span className="font-bold text-slate-800">Ciri Rahasia Anda: </span>
-                    <span className="italic text-slate-600">{report.ciri_rahasia}</span>
+                  <div className="p-3 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-950">
+                    <span className="font-bold">🔒 Ciri Rahasia Terproteksi: </span>
+                    <span className="italic font-medium">{report.ciri_rahasia}</span>
                   </div>
                 </div>
               </div>

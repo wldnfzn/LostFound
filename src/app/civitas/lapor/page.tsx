@@ -140,7 +140,7 @@ export default function BuatLaporanPage() {
             placeholder="Contoh: Laptop Asus Zenbook Hitam, Dompet Kulit Coklat, Kunci Motor Honda..."
             value={formData.judul}
             onChange={(e) => setFormData({ ...formData, judul: e.target.value })}
-            className="w-full p-3 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full p-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 focus:outline-none placeholder:text-slate-400"
           />
         </div>
 
@@ -154,7 +154,7 @@ export default function BuatLaporanPage() {
               required
               value={formData.category_id}
               onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
-              className="w-full p-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             >
               <option value="">-- Pilih Kategori --</option>
               {categories.map((c) => (
@@ -174,7 +174,7 @@ export default function BuatLaporanPage() {
               required
               value={formData.tanggal_hilang}
               onChange={(e) => setFormData({ ...formData, tanggal_hilang: e.target.value })}
-              className="w-full p-3 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             />
           </div>
         </div>
@@ -189,7 +189,7 @@ export default function BuatLaporanPage() {
               required
               value={selectedGedung}
               onChange={(e) => setSelectedGedung(e.target.value)}
-              className="w-full p-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600"
             >
               <option value="">-- Pilih Gedung Kampus --</option>
               {uniqueGedung.map((g) => (
@@ -209,7 +209,7 @@ export default function BuatLaporanPage() {
               disabled={!selectedGedung}
               value={formData.location_id}
               onChange={(e) => setFormData({ ...formData, location_id: e.target.value })}
-              className="w-full p-3 rounded-xl border border-slate-200 text-xs bg-slate-50 focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+              className="w-full p-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 disabled:opacity-50"
             >
               <option value="">-- Pilih Ruangan / Area --</option>
               {filteredRooms.map((r) => (
@@ -232,7 +232,7 @@ export default function BuatLaporanPage() {
             placeholder="Jelaskan ciri umum barang, perkiraan kronologi tertinggal, warna utama..."
             value={formData.deskripsi}
             onChange={(e) => setFormData({ ...formData, deskripsi: e.target.value })}
-            className="w-full p-3 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 rounded-xl border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-blue-600 focus:border-blue-600 placeholder:text-slate-400"
           />
         </div>
 

@@ -207,16 +207,16 @@ export default function AnnouncementDetailPage() {
         <div className="p-6 sm:p-8 border-b border-slate-100 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center space-x-2">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700">
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-800 border border-blue-200">
                 {report.category?.nama}
               </span>
               {report.status === "AdaKandidat" ? (
-                <span className="flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800">
+                <span className="flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-900 border border-amber-300">
                   <Sparkles className="w-3.5 h-3.5 text-amber-600" />
                   <span>Ada Kandidat Ditemukan</span>
                 </span>
               ) : (
-                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+                <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-900 border border-emerald-300">
                   Tayang di Papan Pengumuman
                 </span>
               )}
